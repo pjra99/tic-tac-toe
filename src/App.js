@@ -8,22 +8,29 @@ function App() {
 
  useEffect(()=>{
 
-  let sum1=0;
-  let sum2=0;
+  if(cellValue[0]==="X" && cellValue[3]==="X" && cellValue[6]==="X" ||
+   cellValue[1]==="X" && cellValue[4]==="X" && cellValue[7]==="X" ||
+   cellValue[2]==="X" && cellValue[5]==="X" && cellValue[8]==="X" ||
+   cellValue[0]==="X" && cellValue[1]==="X" && cellValue[2]==="X" ||
+   cellValue[3]==="X" && cellValue[4]==="X" && cellValue[5]==="X" ||
+   cellValue[6]==="X" && cellValue[7]==="X" && cellValue[8]==="X" ||
+   cellValue[0]==="X" && cellValue[4]==="X" && cellValue[8]==="X" ||
+   cellValue[2]==="X" && cellValue[4]==="X" && cellValue[6]==="X"
+   ) {
+    alert("Player 1 Won")
+   }
 
-  for(let i=0; i<9; i++){
-    if(cellValue[i]==="X"){
-      sum1+=i;
-    }
-    if(cellValue[i]==="O"){
-      sum2+=i;
-    }
-  }
-  let sum= sum1>sum2? sum1: sum2
- 
-  if(sum===3 || sum===9 || sum===12 || sum===15 || sum===21){
-    sum1>sum2? alert("Player 1 Won!"): alert("Player 2 Won!")
-  }
+   if(cellValue[0]==="O" && cellValue[3]==="O" && cellValue[6]==="O" ||
+   cellValue[1]==="O" && cellValue[4]==="O" && cellValue[7]==="O" ||
+   cellValue[2]==="O" && cellValue[5]==="O" && cellValue[8]==="O" ||
+   cellValue[0]==="O" && cellValue[1]==="O" && cellValue[2]==="O" ||
+   cellValue[3]==="O" && cellValue[4]==="O" && cellValue[5]==="O" ||
+   cellValue[6]==="O" && cellValue[7]==="O" && cellValue[8]==="O" ||
+   cellValue[0]==="O" && cellValue[4]==="O" && cellValue[8]==="O" ||
+   cellValue[2]==="O" && cellValue[4]==="O" && cellValue[6]==="O"
+   ) {
+    alert("Player 1 Won")
+   }
  }, [cellValue])
 
   function handleClick(cellNum){
@@ -57,16 +64,32 @@ function App() {
     ar[cellNum]=1;
     setIsTapped(ar)
     
-  
-
   }
 
   return (
-    <div className="App">
-      <div className="game-box">
-     <div className="row"><div className="cell" onClick={()=>handleClick(0)}>{cellValue[0]}</div><div className="cell" onClick={()=>handleClick(1)}>{cellValue[1]}</div><div className="cell" onClick={()=>handleClick(2)}>{cellValue[2]}</div></div>
-     <div className="row"><div className="cell" onClick={()=>handleClick(3)}>{cellValue[3]}</div><div className="cell" onClick={()=>handleClick(4)}>{cellValue[4]}</div><div className="cell" onClick={()=>handleClick(5)}>{cellValue[5]}</div></div>
-     <div className="row"><div className="cell" onClick={()=>handleClick(6)}>{cellValue[6]}</div><div className="cell" onClick={()=>handleClick(7)}>{cellValue[7]}</div><div className="cell" onClick={()=>handleClick(8)}>{cellValue[8]}</div></div>
+    <div className="App container">
+     <div className="row">
+       <div className="col-md-2"></div>
+       <div className="col-md-8 game-box-col">
+       <div className="game-box">
+     <div className="grid-row">
+      <div className="cell" onClick={()=>handleClick(0)}>{cellValue[0]}</div>
+     <div className="cell" onClick={()=>handleClick(1)}>{cellValue[1]}</div>
+     <div className="cell" onClick={()=>handleClick(2)}>{cellValue[2]}</div>
+     </div>
+     <div className="grid-row">
+       <div className="cell" onClick={()=>handleClick(3)}>{cellValue[3]}</div>
+     <div className="cell" onClick={()=>handleClick(4)}>{cellValue[4]}</div>
+     <div className="cell" onClick={()=>handleClick(5)}>{cellValue[5]}</div>
+     </div>
+     <div className="grid-row">
+       <div className="cell" onClick={()=>handleClick(6)}>{cellValue[6]}</div>
+     <div className="cell" onClick={()=>handleClick(7)}>{cellValue[7]}</div>
+     <div className="cell" onClick={()=>handleClick(8)}>{cellValue[8]}</div>
+     </div>
+     </div>
+       </div>
+       <div className="col-md-2"></div>
      </div>
     </div>
   );

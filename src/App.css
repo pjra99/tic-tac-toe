@@ -1,4 +1,8 @@
-.row {
+.game-box-col {
+  display: flex;
+  justify-content: center;
+}
+.grid-row {
   display: flex;
 }
 .cell {
