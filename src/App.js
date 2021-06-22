@@ -155,11 +155,12 @@ function GameScreen(){
       currentRound==totalRounds[0]?setDisplayMessage("Game Over."):setDisplayMessage("This Round Is Over.")
       return false;
     }
-    setClickCount(clickCount+1)
+    
       
    if(isTapped[cellNum]===1){
      return false;
    }
+   setClickCount(clickCount+1)
 
     let arr = [...cellValue]
     arr[cellNum] = clickCount%2===0? "O": "X"
