@@ -84,18 +84,7 @@ function GameScreen(){
       setDisplayMessage("The Game has ended in a Draw.")
       return;
     }
-    let resp = [...cellValue]
-    let flag = false;
-    for(let i=0; i<9; i++){
-      if(resp[i]===""){
-        flag=true;
-      }
-    }
-    if(clickCount===8 && isThisRoundOver===0 && flag===false){
-      setDisplayMessage("Draw.")
-      setIsThisRoundOver(1)
-      return;
-    }
+ 
     if(isThisRoundOver===0){
         if(cellValue[0]==="X" && cellValue[3]==="X" && cellValue[6]==="X" ||
    cellValue[1]==="X" && cellValue[4]==="X" && cellValue[7]==="X" ||
@@ -142,8 +131,22 @@ function GameScreen(){
       setDisplayMessage("Player 2 Wins this Round.")
     }
     }
+    else {
+      let resp = [...cellValue]
+      let someCellIsEmpty = false;
+      for(let i=0; i<9; i++){
+        if(resp[i]===""){
+          someCellIsEmpty=true;
+          break;
+        }
+      }
+      if(clickCount===8 && isThisRoundOver===1 && someCellIsEmpty===false){
+        setDisplayMessage("Draw.")
+        setIsThisRoundOver(1)
+      }
     }
-    
+    }
+
    
     console.log(totalRounds)
   
