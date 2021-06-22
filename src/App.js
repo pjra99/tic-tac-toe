@@ -219,6 +219,12 @@ function GameScreen(){
          setCurrentRound(0)
          setScore1(0)
          setScore2(0)
+         setCellValue([])
+         setClickCount(-1)
+         setIsTapped([])
+         setDisplayMessage("")
+         setIsThisRoundOver(0)
+         return false;
        }
        if(isThisRoundOver===1){
        setCurrentRound(currentRound+1)
