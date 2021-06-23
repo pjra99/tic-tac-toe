@@ -74,7 +74,7 @@ function GameScreen(){
   const [score2, setScore2] = useState(0)
   const playerOne = useState(history.location.state.playerOne)
   const playerTwo= useState(history.location.state.playerTwo)
-  const totalRounds = useState(history.location.state.totalRounds)
+  const totalRounds = useState(history.location.state.totalRounds[0])
   const [currentRound, setCurrentRound] = useState(1)
   const [isThisRoundOver , setIsThisRoundOver] = useState(0)
   
@@ -84,7 +84,27 @@ function GameScreen(){
       setDisplayMessage("The Game has ended in a Draw.")
       return;
     }
- 
+    let resp = [...cellValue]
+    let someCellIsEmpty = false;
+    for(let i=0; i<9; i++){
+      if(resp[i]===""){
+        someCellIsEmpty=true;
+        break;
+      }
+    }
+    if(clickCount===8 && isThisRoundOver===0 && someCellIsEmpty===false){
+      if(currentRound<totalRounds[0]){
+        setDisplayMessage("Draw.")
+        setIsThisRoundOver(1)
+      }
+      else if(currentRound==totalRounds[0]){
+        score1>score2? setDisplayMessage("Player 1 has Won the Game!"):setDisplayMessage("Player 2 has Won the Game!")
+        setIsThisRoundOver(1)
+      }
+     else {
+       setDisplayMessage("The Game has ended in a Draw.")
+     }
+    }
     if(isThisRoundOver===0){
         if(cellValue[0]==="X" && cellValue[3]==="X" && cellValue[6]==="X" ||
    cellValue[1]==="X" && cellValue[4]==="X" && cellValue[7]==="X" ||
@@ -131,20 +151,7 @@ function GameScreen(){
       setDisplayMessage("Player 2 Wins this Round.")
     }
     }
-    else {
-      let resp = [...cellValue]
-      let someCellIsEmpty = false;
-      for(let i=0; i<9; i++){
-        if(resp[i]===""){
-          someCellIsEmpty=true;
-          break;
-        }
-      }
-      if(clickCount===8 && isThisRoundOver===1 && someCellIsEmpty===false){
-        setDisplayMessage("Draw.")
-        setIsThisRoundOver(1)
-      }
-    }
+    
     }
 
    
@@ -153,7 +160,7 @@ function GameScreen(){
  }, [cellValue, isThisRoundOver])
 
   function handleClick(cellNum){
-   
+   console.log(totalRounds)
     if(isThisRoundOver===1){
       currentRound==totalRounds[0]?setDisplayMessage("Game Over."):setDisplayMessage("This Round Is Over.")
       return false;
